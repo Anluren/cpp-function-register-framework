@@ -1,0 +1,59 @@
+# Build outputs
+build/
+install/
+
+# IDE files
+.vscode/
+.idea/
+*.xcodeproj/
+*.vcxproj*
+*.sln
+
+# Compiler outputs
+*.o
+*.obj
+*.a
+*.lib
+*.so
+*.dll
+*.dylib
+*.exe
+
+# Debug symbols
+*.dSYM/
+*.pdb
+
+# CMake generated files
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+*.cmake
+!CMakeLists.txt
+
+# Package managers
+conan.lock
+vcpkg_installed/
+_deps/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Temporary files
+*~
+*.tmp
+*.temp
+*.swp
+*.swo
+*.log
+
+# Package files
+*.tar.gz
+*.zip
+*.7z

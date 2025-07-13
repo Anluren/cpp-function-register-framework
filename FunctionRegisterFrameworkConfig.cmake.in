@@ -1,0 +1,23 @@
+# Function Register Framework CMake Configuration
+# 
+# This file allows easy integration of the Function Register Framework
+# into other CMake projects.
+#
+# Usage:
+#   find_package(FunctionRegisterFramework REQUIRED)
+#   target_link_libraries(your_target FunctionRegisterFramework::function_register)
+
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# Check if the targets are already defined
+if(NOT TARGET FunctionRegisterFramework::function_register)
+    include("${CMAKE_CURRENT_LIST_DIR}/FunctionRegisterFrameworkTargets.cmake")
+endif()
+
+# Provide the variables that users might expect
+set(FunctionRegisterFramework_LIBRARIES FunctionRegisterFramework::function_register)
+set(FunctionRegisterFramework_INCLUDE_DIRS "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+check_required_components(FunctionRegisterFramework)
