@@ -73,4 +73,21 @@ if(BUILD_EXAMPLES)
     install(TARGETS simple_modern_demo
         RUNTIME DESTINATION bin
     )
+    
+    # Create modular demo executable (demonstrates separate .cpp files for each function group)
+    add_executable(modular_demo 
+        modular_demo.cpp
+        math_function_group.cpp
+        string_function_group.cpp
+        utility_function_group.cpp
+    )
+    target_link_libraries(modular_demo function_register_core)
+    target_include_directories(modular_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install modular demo
+    install(TARGETS modular_demo
+        RUNTIME DESTINATION bin
+    )
 endif()

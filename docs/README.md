@@ -46,6 +46,38 @@ int main() {
 
 See [SIMPLE_MODERN_API.md](SIMPLE_MODERN_API.md) for complete documentation.
 
+## Modular Architecture
+
+For larger projects, you can split function registration across multiple `.cpp` files:
+
+```cpp
+// math_function_group.cpp
+void register_math_functions() {
+    auto group = std::make_unique<SimpleFunctionGroup>("Math");
+    group->add("add", [](int a, int b) { return a + b; });
+    // ... register other math functions
+    
+    auto& registry = SimpleFunctionRegistry::instance();
+    registry.register_group(FunctionGroupType::MATH_FUNCTIONS, std::move(group));
+}
+
+// main.cpp
+int main() {
+    register_math_functions();    // Each .cpp registers its own group
+    register_string_functions();
+    register_utility_functions();
+    
+    // Use functions from any group
+    auto& registry = SimpleFunctionRegistry::instance();
+    auto* math = registry.get_group(FunctionGroupType::MATH_FUNCTIONS);
+    auto result = math->call_as<int>("add", 10, 20);
+    
+    return 0;
+}
+```
+
+See [MODULAR_REGISTRATION.md](MODULAR_REGISTRATION.md) for complete modular architecture guide.
+
 ## Legacy API (C++98+)
 
 The original API supports older C++ standards:
