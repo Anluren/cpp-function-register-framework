@@ -60,3 +60,15 @@ void register_utility_functions() {
     auto& registry = SimpleFunctionRegistry::instance();
     registry.register_group(FunctionGroupType::UTILITY_FUNCTIONS, std::move(utility_group));
 }
+
+// Automatic registration using static initialization
+namespace {
+    struct UtilityFunctionAutoRegistration {
+        UtilityFunctionAutoRegistration() {
+            register_utility_functions();
+        }
+    };
+    
+    // Static instance triggers registration at program startup
+    static UtilityFunctionAutoRegistration auto_register;
+}

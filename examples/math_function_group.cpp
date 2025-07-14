@@ -46,3 +46,15 @@ void register_math_functions() {
     auto& registry = SimpleFunctionRegistry::instance();
     registry.register_group(FunctionGroupType::MATH_FUNCTIONS, std::move(math_group));
 }
+
+// Automatic registration using static initialization
+namespace {
+    struct MathFunctionAutoRegistration {
+        MathFunctionAutoRegistration() {
+            register_math_functions();
+        }
+    };
+    
+    // Static instance triggers registration at program startup
+    static MathFunctionAutoRegistration auto_register;
+}

@@ -58,3 +58,16 @@ void register_string_functions() {
     auto& registry = SimpleFunctionRegistry::instance();
     registry.register_group(FunctionGroupType::STRING_FUNCTIONS, std::move(string_group));
 }
+
+// Automatic registration using static initialization
+// This ensures the function group is registered when the module is loaded
+namespace {
+    struct StringFunctionAutoRegistration {
+        StringFunctionAutoRegistration() {
+            register_string_functions();
+        }
+    };
+    
+    // Static instance triggers registration at program startup
+    static StringFunctionAutoRegistration auto_register;
+}

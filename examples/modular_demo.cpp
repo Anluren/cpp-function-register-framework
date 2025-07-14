@@ -5,14 +5,8 @@
 
 int main() {
     std::cout << "=== Modular Function Registration Demo ===" << std::endl;
-    std::cout << "Each function group is registered from a separate .cpp file" << std::endl;
-    
-    // Register all function groups from their respective .cpp files
-    register_math_functions();
-    register_string_functions();
-    register_utility_functions();
-    
-    std::cout << "\nFunction groups registered successfully!" << std::endl;
+    std::cout << "Each function group is auto-registered from a separate .cpp file" << std::endl;
+    std::cout << "(No manual registration calls needed - happens at program startup)" << std::endl;
     
     // Get registry and test functions from each group
     auto& registry = SimpleFunctionRegistry::instance();
