@@ -10,6 +10,46 @@ A flexible C++ framework that allows each .cpp file to register groups of functi
 - **Automatic Registration**: Functions are registered automatically during static initialization
 - **Cross-Platform**: Compatible with C++98 and later standards
 
+## Quick Start - Simplified Modern API (C++17+)
+
+For C++17+ projects, we recommend using the simplified modern API for the best developer experience:
+
+```cpp
+#include "simple_modern_function_group.h"
+#include <iostream>
+
+int main() {
+    // Create function group
+    auto group = std::make_unique<SimpleFunctionGroup>("Math");
+    
+    // Register any callable with unified API
+    group->add("add", [](int a, int b) { return a + b; });
+    group->add("square", [](int x) { return x * x; });
+    
+    // Type-safe function calls
+    auto sum = group->call_as<int>("add", 10, 20);        // 30
+    auto square = group->call_as<int>("square", 5);       // 25
+    
+    std::cout << "add(10, 20) = " << sum << std::endl;
+    std::cout << "square(5) = " << square << std::endl;
+    
+    return 0;
+}
+```
+
+**Benefits of the Modern API:**
+- ✅ Unified `add()` method for function pointers, lambdas, and std::function
+- ✅ Type-safe calls with automatic casting
+- ✅ Modern C++17 features (`std::any`, `std::optional`, `if constexpr`)
+- ✅ Minimal boilerplate code
+- ✅ Built-in error handling with optional returns
+
+See [SIMPLE_MODERN_API.md](SIMPLE_MODERN_API.md) for complete documentation.
+
+## Legacy API (C++98+)
+
+The original API supports older C++ standards:
+
 ## Architecture
 
 ### Core Components

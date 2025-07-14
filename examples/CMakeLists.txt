@@ -49,4 +49,28 @@ if(BUILD_EXAMPLES)
     install(TARGETS simple_example
         RUNTIME DESTINATION bin
     )
+    
+    # Create modern C++17 demo executable
+    add_executable(modern_demo modern_demo.cpp)
+    target_link_libraries(modern_demo function_register_core)
+    target_include_directories(modern_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install modern demo
+    install(TARGETS modern_demo
+        RUNTIME DESTINATION bin
+    )
+    
+    # Create simple modern C++17 demo executable
+    add_executable(simple_modern_demo simple_modern_demo.cpp)
+    target_link_libraries(simple_modern_demo function_register_core)
+    target_include_directories(simple_modern_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install simple modern demo
+    install(TARGETS simple_modern_demo
+        RUNTIME DESTINATION bin
+    )
 endif()
