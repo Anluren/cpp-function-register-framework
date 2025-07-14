@@ -331,3 +331,34 @@ Feel free to extend this framework with additional features:
 ## License
 
 This framework is provided as-is for educational and development purposes.
+
+## Performance Analysis
+
+String-based function lookups in the framework have been thoroughly analyzed and benchmarked. Key findings:
+
+### Benchmark Results
+- **Direct function calls**: 48.8 ns (baseline)
+- **ID-based lookup**: 224.2 ns (4.6x overhead)
+- **String-based lookup**: 234-249 ns (4.8-5.1x overhead)
+
+### Performance Recommendations
+1. **Use string-based lookup by default** - Easy to debug and maintain
+2. **Profile your application** - Identify actual performance bottlenecks
+3. **Optimize hot paths with ID lookup** - Only where measurably beneficial
+4. **Consider direct calls for critical paths** - When dynamic dispatch isn't needed
+
+The performance difference between ID and string lookup is smaller than expected (~4.6x vs ~4.8x). The main bottleneck is function wrapping overhead, not the lookup mechanism itself.
+
+For detailed analysis, see:
+- [`docs/PERFORMANCE_ANALYSIS.md`](docs/PERFORMANCE_ANALYSIS.md) - Theoretical analysis
+- [`docs/BENCHMARK_RESULTS.md`](docs/BENCHMARK_RESULTS.md) - Actual measurements
+- [`examples/performance_benchmark.cpp`](examples/performance_benchmark.cpp) - Raw benchmarks
+- [`examples/performance_comparison.cpp`](examples/performance_comparison.cpp) - Practical examples
+
+### When to Optimize
+- **High-frequency calls**: > 10,000 calls/second
+- **Performance-critical code**: Real-time systems, game loops
+- **Large function sets**: > 100 functions per group
+- **Memory-constrained environments**: Embedded systems
+
+For most applications, the string-based approach provides the best balance of usability and performance.

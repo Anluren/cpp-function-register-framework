@@ -90,4 +90,28 @@ if(BUILD_EXAMPLES)
     install(TARGETS modular_demo
         RUNTIME DESTINATION bin
     )
+    
+    # Create performance benchmark executable
+    add_executable(performance_benchmark performance_benchmark.cpp)
+    target_link_libraries(performance_benchmark function_register_core)
+    target_include_directories(performance_benchmark 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install performance benchmark
+    install(TARGETS performance_benchmark
+        RUNTIME DESTINATION bin
+    )
+    
+    # Create performance comparison executable
+    add_executable(performance_comparison performance_comparison.cpp)
+    target_link_libraries(performance_comparison function_register_core)
+    target_include_directories(performance_comparison 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install performance comparison
+    install(TARGETS performance_comparison
+        RUNTIME DESTINATION bin
+    )
 endif()
