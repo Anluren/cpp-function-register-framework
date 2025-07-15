@@ -78,6 +78,58 @@ int main() {
 
 See [MODULAR_REGISTRATION.md](MODULAR_REGISTRATION.md) for complete modular architecture guide.
 
+## Multi-Module Registry (Advanced)
+
+For advanced scenarios where multiple modules need to implement the same function with different algorithms or optimizations, use the Multi-Module Registry:
+
+```cpp
+#include "multi_module_registry.h"
+
+// Multiple modules can implement the same function ID
+namespace BasicMath {
+    int add(int a, int b) { return a + b; }  // Simple implementation
+}
+
+namespace OptimizedMath {
+    int add(int a, int b) { return simd_add(a, b); }  // SIMD optimized
+}
+
+namespace DebugMath {
+    int add(int a, int b) {  // With logging and bounds checking
+        std::cout << "Adding " << a << " + " << b << std::endl;
+        return a + b;
+    }
+}
+
+int main() {
+    auto& registry = MultiModuleFunctionRegistry::instance();
+    
+    // Register all implementations
+    registry.register_function("BasicMath", StandardFunctionId::ADD, "Simple addition", BasicMath::add);
+    registry.register_function("OptimizedMath", StandardFunctionId::ADD, "SIMD addition", OptimizedMath::add);
+    registry.register_function("DebugMath", StandardFunctionId::ADD, "Debug addition", DebugMath::add);
+    
+    // Caller chooses which implementation to use
+    auto basic_result = registry.call_function<int>("BasicMath", StandardFunctionId::ADD, 5, 3);
+    auto optimized_result = registry.call_function<int>("OptimizedMath", StandardFunctionId::ADD, 5, 3);
+    auto debug_result = registry.call_function<int>("DebugMath", StandardFunctionId::ADD, 5, 3);
+    
+    // Or use any available implementation
+    auto any_result = registry.call_function_any<int>(StandardFunctionId::ADD, 5, 3);
+    
+    return 0;
+}
+```
+
+**Key Features:**
+- ✅ Multiple modules implementing the same function ID
+- ✅ Caller can choose specific module implementation
+- ✅ Runtime discovery of available implementations
+- ✅ Fallback to any available implementation
+- ✅ Module and function introspection capabilities
+
+See [MULTI_MODULE_REGISTRY.md](MULTI_MODULE_REGISTRY.md) for complete documentation and examples.
+
 ## Legacy API (C++98+)
 
 The original API supports older C++ standards:

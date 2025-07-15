@@ -126,4 +126,21 @@ if(BUILD_EXAMPLES)
     install(TARGETS constrained_function_demo
         RUNTIME DESTINATION bin
     )
+    
+    # Create multi-module demo executable
+    add_executable(multi_module_demo 
+        multi_module_demo.cpp
+        multi_module_math_basic.cpp
+        multi_module_math_optimized.cpp
+        multi_module_math_debug.cpp
+    )
+    target_link_libraries(multi_module_demo function_register_core)
+    target_include_directories(multi_module_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install multi-module demo
+    install(TARGETS multi_module_demo
+        RUNTIME DESTINATION bin
+    )
 endif()
