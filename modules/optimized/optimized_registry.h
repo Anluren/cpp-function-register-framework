@@ -3,6 +3,7 @@
 #include "optimized_function_group.h"
 #include <memory>
 #include <array>
+#include <stdexcept>
 
 namespace Optimized {
 

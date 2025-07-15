@@ -6,6 +6,7 @@
 #include <functional>
 #include <array>
 #include <string_view>
+#include <stdexcept>
 
 namespace Optimized {
 

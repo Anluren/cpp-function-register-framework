@@ -3,6 +3,7 @@
 #include <random>
 #include <thread>
 #include <future>
+#include <sstream>
 
 namespace Modern {
 
