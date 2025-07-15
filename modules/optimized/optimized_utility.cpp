@@ -63,4 +63,12 @@ public:
 // Static instance to trigger registration
 static OptimizedUtilityRegistrar utilityRegistrar;
 
+void initUtilityFunctions() {
+    static bool initialized = false;
+    if (!initialized) {
+        // Force the static registrar to be instantiated
+        static OptimizedUtilityRegistrar registrar;
+        initialized = true;
+    }
+}
 } // namespace Optimized

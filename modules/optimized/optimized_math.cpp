@@ -59,4 +59,13 @@ public:
 // Static instance to trigger registration
 static OptimizedMathRegistrar mathRegistrar;
 
+// Explicit initialization function for static linking
+void initMathFunctions() {
+    static bool initialized = false;
+    if (!initialized) {
+        // Force the static registrar to be instantiated
+        static OptimizedMathRegistrar registrar;
+        initialized = true;
+    }
+}
 } // namespace Optimized

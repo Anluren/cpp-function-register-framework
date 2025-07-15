@@ -5,6 +5,6 @@
  * Performance-focused math implementations
  */
 
-namespace OptimizedModule {
-    void init_math_functions();
+namespace Optimized {
+    void initMathFunctions();
 }

@@ -4,6 +4,7 @@
  * Optimized String Functions  
  */
 
-namespace OptimizedModule {
-    void init_string_functions();
+#include "optimized_math_functions.h"
+namespace Optimized {
+    void initStringFunctions();
 }

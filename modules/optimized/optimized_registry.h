@@ -110,3 +110,8 @@ public:
     Optimized::OptimizedRegistry::getInstance().callFunction<retType>(category, name, __VA_ARGS__)
 
 } // namespace Optimized
+
+// Global initialization function
+namespace Optimized {
+    void initializeOptimizedModule();
+}

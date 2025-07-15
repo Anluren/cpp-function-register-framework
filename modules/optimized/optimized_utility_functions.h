@@ -4,6 +4,6 @@
  * Optimized Utility Functions
  */
 
-namespace OptimizedModule {
-    void init_utility_functions();
+namespace Optimized{
+    void initUtilityFunctions();
 }

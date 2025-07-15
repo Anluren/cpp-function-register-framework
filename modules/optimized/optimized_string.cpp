@@ -73,4 +73,13 @@ public:
 // Static instance to trigger registration
 static OptimizedStringRegistrar stringRegistrar;
 
+// Explicit initialization function for static linking
+void initStringFunctions() {
+    static bool initialized = false;
+    if (!initialized) {
+        // Force the static registrar to be instantiated
+        static OptimizedStringRegistrar registrar;
+        initialized = true;
+    }
+}
 } // namespace Optimized
