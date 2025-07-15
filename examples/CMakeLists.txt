@@ -143,4 +143,16 @@ if(BUILD_EXAMPLES)
     install(TARGETS multi_module_demo
         RUNTIME DESTINATION bin
     )
+    
+    # Create modular framework demo executable
+    add_executable(modular_framework_demo modular_framework_demo.cpp)
+    target_link_libraries(modular_framework_demo function_register_core)
+    target_include_directories(modular_framework_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install modular framework demo
+    install(TARGETS modular_framework_demo
+        RUNTIME DESTINATION bin
+    )
 endif()
