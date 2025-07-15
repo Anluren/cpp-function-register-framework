@@ -114,4 +114,16 @@ if(BUILD_EXAMPLES)
     install(TARGETS performance_comparison
         RUNTIME DESTINATION bin
     )
+    
+    # Create constrained function demo executable
+    add_executable(constrained_function_demo constrained_function_demo.cpp)
+    target_link_libraries(constrained_function_demo function_register_core)
+    target_include_directories(constrained_function_demo 
+        PRIVATE ${CMAKE_SOURCE_DIR}/include
+    )
+    
+    # Install constrained function demo
+    install(TARGETS constrained_function_demo
+        RUNTIME DESTINATION bin
+    )
 endif()
