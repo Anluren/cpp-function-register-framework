@@ -16,16 +16,17 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release)
 endif()
 
-# Include directories
+# Options
+option(BUILD_EXAMPLES "Build example programs (legacy)" OFF)
+
+# Include directories (for examples and prototypes)
 include_directories(${CMAKE_SOURCE_DIR}/include)
 
 # Add subdirectories
-add_subdirectory(src)
-add_subdirectory(examples)
+if(BUILD_EXAMPLES)
+    add_subdirectory(examples)
+endif()
 add_subdirectory(modules)
-
-# Options
-option(BUILD_EXAMPLES "Build example programs" ON)
 
 # Print build information
 message(STATUS "Build type: ${CMAKE_BUILD_TYPE}")
@@ -42,11 +43,11 @@ set(CONFIG_INSTALL_DIR lib/cmake/FunctionRegisterFramework)
 install(DIRECTORY include/ DESTINATION ${INCLUDE_INSTALL_DIR}
         FILES_MATCHING PATTERN "*.h")
 
-# Export targets
-install(EXPORT FunctionRegisterFrameworkTargets
-        FILE FunctionRegisterFrameworkTargets.cmake
-        NAMESPACE FunctionRegisterFramework::
-        DESTINATION ${CONFIG_INSTALL_DIR})
+# Export targets (disabled - using modular architecture)
+# install(EXPORT FunctionRegisterFrameworkTargets
+#         FILE FunctionRegisterFrameworkTargets.cmake
+#         NAMESPACE FunctionRegisterFramework::
+#         DESTINATION ${CONFIG_INSTALL_DIR})
 
 # Configure package config file
 include(CMakePackageConfigHelpers)
