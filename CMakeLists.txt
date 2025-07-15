@@ -22,6 +22,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 # Add subdirectories
 add_subdirectory(src)
 add_subdirectory(examples)
+add_subdirectory(modules)
 
 # Options
 option(BUILD_EXAMPLES "Build example programs" ON)
