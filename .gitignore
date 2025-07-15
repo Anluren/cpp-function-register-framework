@@ -57,3 +57,10 @@ Thumbs.db
 *.tar.gz
 *.zip
 *.7z
+
+# Build directories
+build/
+build_*/
+*.a
+*.so
+*.dll
