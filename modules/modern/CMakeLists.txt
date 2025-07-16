@@ -9,6 +9,9 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
+# Find required packages
+find_package(Threads REQUIRED)
+
 # Create modern module library
 add_library(func_register_modern STATIC
     modern_registry.cpp
@@ -20,6 +23,9 @@ add_library(func_register_modern STATIC
 target_include_directories(func_register_modern PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+# Link with threading library
+target_link_libraries(func_register_modern Threads::Threads)
 
 # Create modern demo executable
 add_executable(modern_demo modern_demo.cpp)

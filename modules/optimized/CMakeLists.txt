@@ -10,6 +10,9 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -march=native")
 
+# Find required packages
+find_package(Threads REQUIRED)
+
 # Create optimized module library
 add_library(func_register_optimized STATIC
     optimized_registry.cpp
@@ -21,6 +24,9 @@ add_library(func_register_optimized STATIC
 target_include_directories(func_register_optimized PUBLIC
     ${CMAKE_CURRENT_SOURCE_DIR}
 )
+
+# Link with threading library
+target_link_libraries(func_register_optimized Threads::Threads)
 
 # Create optimized demo executable
 add_executable(optimized_demo optimized_demo.cpp)

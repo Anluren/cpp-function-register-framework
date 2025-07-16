@@ -77,8 +77,8 @@ public:
     template<typename R, typename... Args>
     void registerFunction(std::string_view name, R(*func)(Args...)) {
         auto id = hash_string_view(name);
-        functionPtrs[hash_string_view(name)] = reinterpret_cast<void*>(func);
-        functionNames[hash_string_view(name)] = name;
+        functionPtrs[id] = reinterpret_cast<void*>(func);
+        functionNames[id] = name;
     }
     
     // Fast function lookup using compile-time hash

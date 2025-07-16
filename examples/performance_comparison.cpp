@@ -1,6 +1,7 @@
 #include <iostream>
 #include <chrono>
 #include <vector>
+#include <cmath>
 #include "../include/simple_modern_function_group.h"
 #include "../include/optimized_function_group.h"
 

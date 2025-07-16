@@ -9,6 +9,9 @@ install/
 *.vcxproj*
 *.sln
 
+# Language server cache
+.cache/
+
 # Compiler outputs
 *.o
 *.obj
